@@ -12,8 +12,8 @@ scrape_configs:
     static_configs:
       - targets:
         - dppo-osa-ansi-dev.dmz.test.ot:9100 # Main VictoriaMetrics VM and node exporter on it
-        # - cbr-lot1-oscp-m.dmz.test.ot:9100
-        # - cbr-lot1-oscp-n1.dmz.test.ot:9100
-        # - cbr-lot1-oscp-n2.dmz.test.ot:9100
-        # - cbr-lot1-oscp-in1.dmz.test.ot:9100
-        # - cbr-lot1-oscp-in2.dmz.test.ot:9100
+        - cbr-lot1-oscp-m.dmz.test.ot:9100
+        - cbr-lot1-oscp-n1.dmz.test.ot:9100
+        - cbr-lot1-oscp-n2.dmz.test.ot:9100
+        - cbr-lot1-oscp-in1.dmz.test.ot:9100
+        - cbr-lot1-oscp-in2.dmz.test.ot:9100

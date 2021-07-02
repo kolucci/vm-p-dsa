@@ -6,7 +6,7 @@ services:
     environment:
      - HTTP_PROXY=http://10.155.110.30:3128
      - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot
+     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
     depends_on:
       - "victoriametrics"
     ports:
@@ -26,7 +26,7 @@ services:
     environment:
      - HTTP_PROXY=http://10.155.110.30:3128
      - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot
+     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
     ports:
       - 8428:8428
       - 8089:8089
@@ -51,7 +51,7 @@ services:
     environment:
      - HTTP_PROXY=http://10.155.110.30:3128
      - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot
+     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
     depends_on:
       - "victoriametrics"
     ports:
@@ -70,7 +70,7 @@ services:
     environment:
      - HTTP_PROXY=http://10.155.110.30:3128
      - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot
+     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
     depends_on:
       - "victoriametrics"
       - "alertmanager"
@@ -96,7 +96,7 @@ services:
     environment:
      - HTTP_PROXY=http://10.155.110.30:3128
      - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot
+     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
     volumes:
       - /root/vm-p-dsa/deployment/docker/alertmanager.yml:/config/alertmanager.yml
     command:
@@ -105,6 +105,19 @@ services:
       - 9093:9093
     networks:
       - vm_net
+    restart: always
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+       - vm_net
     restart: always
 volumes:
   vmagentdata: {}
