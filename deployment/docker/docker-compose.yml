@@ -4,9 +4,9 @@ services:
     container_name: vmagent
     image: victoriametrics/vmagent
     environment:
-     - HTTP_PROXY=http://10.155.110.30:3128
-     - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
+     - HTTP_PROXY=http://10.31.39.254:3128
+     - HTTPS_PROXY=http://10.31.39.254:3128
+     - NO_PROXY=localhost,127.0.0.1,10.31.39.0,.sol7.loc,victoriametrics
     depends_on:
       - "victoriametrics"
     ports:
@@ -24,9 +24,9 @@ services:
     container_name: victoriametrics
     image: victoriametrics/victoria-metrics
     environment:
-     - HTTP_PROXY=http://10.155.110.30:3128
-     - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
+     - HTTP_PROXY=http://10.31.39.254:3128
+     - HTTPS_PROXY=http://10.31.39.254:3128
+     - NO_PROXY=localhost,127.0.0.1,10.31.39.0,.sol7.loc,victoriametrics
     ports:
       - 8428:8428
       - 8089:8089
@@ -49,9 +49,9 @@ services:
     container_name: grafana
     image: grafana/grafana:8.0.0
     environment:
-     - HTTP_PROXY=http://10.155.110.30:3128
-     - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
+     - HTTP_PROXY=http://10.31.39.254:3128
+     - HTTPS_PROXY=http://10.31.39.254:3128
+     - NO_PROXY=localhost,127.0.0.1,10.31.39.0,.sol7.loc,victoriametrics
     depends_on:
       - "victoriametrics"
     ports:
@@ -68,9 +68,9 @@ services:
     container_name: vmalert
     image: victoriametrics/vmalert
     environment:
-     - HTTP_PROXY=http://10.155.110.30:3128
-     - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
+     - HTTP_PROXY=http://10.31.39.254:3128
+     - HTTPS_PROXY=http://10.31.39.254:3128
+     - NO_PROXY=localhost,127.0.0.1,10.31.39.0,.sol7.loc,victoriametrics
     depends_on:
       - "victoriametrics"
       - "alertmanager"
@@ -94,9 +94,9 @@ services:
     container_name: alertmanager
     image:  prom/alertmanager
     environment:
-     - HTTP_PROXY=http://10.155.110.30:3128
-     - HTTPS_PROXY=http://10.155.110.30:3128
-     - NO_PROXY=localhost,127.0.0.1,.softailor.ru,192.168.4.0,192.168.5.0,.dmz.test.ot,victoriametrics
+     - HTTP_PROXY=http://10.31.39.254:3128
+     - HTTPS_PROXY=http://10.31.39.254:3128
+     - NO_PROXY=localhost,127.0.0.1,10.31.39.0,.sol7.loc,victoriametrics
     volumes:
       - /root/vm-p-dsa/deployment/docker/alertmanager.yml:/config/alertmanager.yml
     command:
